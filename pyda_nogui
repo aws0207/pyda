@@ -1,17 +1,34 @@
 import wolframalpha
 import wikipedia
+from tkinter import *
 
 
-app_id = "6QKA87-R5ERAW2WTW"
+app_id = "_________"
 client = wolframalpha.Client(app_id)
 
+root = Tk()
+qholder = Entry(root)
+qholder.pack(side=RIGHT)
 
-while True:
-    myinput = input("What is your inquiry? ")
+
+def recieveQuery():
+    query = qholder.get()
 
     try:
-        res = client.query(myinput)
+        res = client.query(query)
         answer = next(res.results).text
         print(answer)
     except:
-        print(wikipedia.summary(myinput))
+        answer = wikipedia.summary(query)
+        print(answer)
+
+    theanswer = Label(root, text=answer)
+    theanswer.pack(side=BOTTOM)
+
+askq = Label(root, text="What is your inquiry? ")
+askq.pack(side=LEFT)
+
+submitbutton = Button(root, text="Submit Query", command=recieveQuery)
+submitbutton.pack(side=BOTTOM)
+
+root.mainloop()
