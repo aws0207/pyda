@@ -2,7 +2,7 @@ import wolframalpha
 import wikipedia
 
 
-app_id = "6QKA87-R5ERAW2WTW"
+app_id = "____"
 client = wolframalpha.Client(app_id)
 
 
